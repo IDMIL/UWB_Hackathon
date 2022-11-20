@@ -1,0 +1,30 @@
+#N canvas 643 217 890 662 12;
+#X floatatom 129 64 5 0 0 0 - - - 0;
+#X floatatom 215 66 5 0 0 0 - - - 0;
+#X floatatom 303 61 5 0 0 0 - - - 0;
+#X text 395 18 rx0 rx1 rx2 rx3;
+#X text 123 38 tag_pos(a \, b \, c);
+#X text 73 99 cos_a;
+#X obj 122 100 expr ($f2 * $f2 + $f3 * $f3 - $f1 * $f1)/(2*$f2*$f3)
+;
+#X obj 47 198 expr $f2 * $f1;
+#X text 16 198 x;
+#X obj 225 205 *;
+#X obj 250 151 expr (1 - $f1 * $f1);
+#X obj 250 176 sqrt;
+#X text 209 207 y;
+#X floatatom 45 280 5 0 0 0 - - - 0;
+#X floatatom 220 274 5 0 0 0 - - - 0;
+#X text 499 70 Built on the code from https://github.com/Makerfabs/Makerfabs-ESP32-UWB/blob/main/example/IndoorPositioning/uwb_position_display.py
+Streamlined;
+#X connect 0 0 6 0;
+#X connect 1 0 6 1;
+#X connect 1 0 7 1;
+#X connect 1 0 9 0;
+#X connect 2 0 6 2;
+#X connect 6 0 7 0;
+#X connect 6 0 10 0;
+#X connect 7 0 13 0;
+#X connect 9 0 14 0;
+#X connect 10 0 11 0;
+#X connect 11 0 9 1;
