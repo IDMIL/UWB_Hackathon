@@ -16,7 +16,7 @@ static dwt_config_t config = {
     9,               /* RX preamble code. Used in RX only. */
     1,               /* 0 to use standard 8 symbol SFD, 1 to use non-standard 8 symbol, 2 for non-standard 16 symbol SFD and 3 for 4z 8 symbol SDF type */
     DWT_BR_6M8,      /* Data rate. */
-    DWT_PHRMODE_STD, /* PHY header mode. */
+    DWT_PHRMODE_EXT, /* PHY header mode. */
     DWT_PHRRATE_STD, /* PHY header rate. */
     (129 + 8 - 8),   /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
     DWT_STS_MODE_OFF,
@@ -29,18 +29,20 @@ static dwt_config_t config = {
  *     - byte 1: sequence number, incremented for each new frame.
  *     - byte 2 -> 9: device ID, see NOTE 1 below.
  */
-static uint8_t tx_msg[] = {0xC5, 0, 'D', 'E', 'C', 'A', 'W', 'A', 'V', 'E'};
+static uint8_t tx_msg[32];
+
 /* Index to access to sequence number of the blink frame in the tx_msg array. */
 #define BLINK_FRAME_SN_IDX 1
 
 #define FRAME_LENGTH    (sizeof(tx_msg)+FCS_LEN) //The real length that is going to be transmitted
 
 /* Inter-frame delay period, in milliseconds. */
-#define TX_DELAY_MS 100
+#define TX_DELAY_MS 10
 
 extern dwt_txconfig_t txconfig_options;
 
 void setup() {
+  for (size_t i = 0; i < sizeof(tx_msg); ++i) tx_msg[i] = i;
   UART_init();
   test_run_info((unsigned char *)APP_NAME);
 
