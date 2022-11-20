@@ -29,7 +29,7 @@ static dwt_config_t config = {
  *     - byte 1: sequence number, incremented for each new frame.
  *     - byte 2 -> 9: device ID, see NOTE 1 below.
  */
-static uint8_t tx_msg[32];
+static uint8_t tx_msg[1021];
 
 /* Index to access to sequence number of the blink frame in the tx_msg array. */
 #define BLINK_FRAME_SN_IDX 1
