@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 223.0, 132.0, 536.0, 448.0 ],
+		"rect" : [ 223.0, 132.0, 620.0, 454.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,31 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-50",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 66.75, 521.0, 58.0, 22.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-51",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 66.990004999999996, 549.0, 286.0, 22.0 ],
+					"presentation_linecount" : 2,
+					"text" : "/speakers/az 30 -30 60 -60 120 -120 150 -150, bang"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-46",
 					"items" : [ "Off", ",", "Stereo", ",", "Multichannel" ],
@@ -188,20 +213,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 26.25, 495.0, 119.0, 21.0 ],
 					"text" : "/source/1/xyz $1 $2 $3"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"fontname" : "Arial",
-					"fontsize" : 11.0,
-					"id" : "obj-25",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 26.25, 528.0, 29.0, 21.0 ],
-					"text" : "thru"
 				}
 
 			}
@@ -698,13 +709,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
-					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"order" : 1,
 					"source" : [ "obj-26", 0 ]
@@ -798,8 +802,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-25", 0 ],
-					"midpoints" : [ 35.75, 528.0, 35.75, 528.0 ],
+					"destination" : [ "obj-7", 0 ],
 					"source" : [ "obj-35", 0 ]
 				}
 
@@ -861,6 +864,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-51", 0 ],
+					"source" : [ "obj-50", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-51", 0 ]
 				}
 
 			}
