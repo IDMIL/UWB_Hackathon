@@ -4,9 +4,9 @@ import glob
 import os
 
 # Analyse the reliability data
-# parentFolder = "formalResults"
-parentFolder = "occlusionResults"
-# parentFolder = "occlusionResults2"
+parentFolder = "formalResults"
+#parentFolder = "occlusionResults"
+#parentFolder = "occlusionResults2"
 
 # Create a bunch of empty lists
 conditionList = []
@@ -58,7 +58,7 @@ reliabilityData = pd.DataFrame()
 
 # Add data to pandas dataframe
 reliabilityData['Test Condition'] = conditionList
-reliabilityData['Test Duration (ms)'] = durationList
+reliabilityData['Test Duration (s)'] = durationList
 reliabilityData['Distance (cm)'] = distanceList
 reliabilityData['Transmission Rate (Hz)'] = txdelayList
 reliabilityData['Message Length (bytes)'] = msglengthList

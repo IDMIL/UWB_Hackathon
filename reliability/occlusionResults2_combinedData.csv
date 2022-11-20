@@ -1,4 +1,4 @@
-,Test Condition,Test Duration (ms),Distance (cm),Transmission Rate (Hz),Message Length (bytes),Messages Sent,Messages Received,Packet Loss (%)
+,Test Condition,Test Duration (s),Distance (cm),Transmission Rate (Hz),Message Length (bytes),Messages Sent,Messages Received,Packet Loss (%)
 0,Occlusion,10,100,100.0,32,1001,3,0.2997002997003006
 1,Occlusion,10,100,100.0,32,1001,994,99.3006993006993
 2,Occlusion,10,25,100.0,32,1001,996,99.5004995004995
