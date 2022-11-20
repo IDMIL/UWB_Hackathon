@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import os
 
-ser = serial.Serial(port=sys.argv[1],baudrate=int(sys.argv[2]))
+ser = serial.Serial(port=sys.argv[1],baudrate=int(sys.argv[2]),timeout=5)
 dur = int(sys.argv[3])
 count = 0
 start_time = time.perf_counter()
@@ -20,7 +20,7 @@ msgList = []
 fileName = "messagesReceived_"
 
 # Determine if it is the transmitter or receiver we are connected to
-if sys.argv[1] == 'COM9':
+if sys.argv[1] == 'COM11':
     device = "TX.csv"
 else:
     device = "RX.csv"

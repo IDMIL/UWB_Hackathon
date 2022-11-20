@@ -16,14 +16,16 @@ DATA_START = b'<<<'
 DATA_END = b'\n'
 
 # Ports
-txPort = 'COM9'
+txPort = 'COM11'
 rxPort = 'COM8'
-dur = 120
+dur = 10
 
 # Setup testing parameters
-tx_delay = 100 #ms
-msg_length = 12 #bytes
-board_dist = 0 #cm
+tx_delay = 10 #ms
+msg_length = 32 #bytes
+board_dist = 39 #cm
+trial_num = "_0_" #num trial
+pipeCond = "_occl_handofffloor"
 
 # Setup Threads
 p1 = Popen(['python', './ReadCOM.py', txPort, BAUDRATE, str(dur)], stdout=PIPE,text=True) 
@@ -56,9 +58,13 @@ txdf = pd.read_csv("messagesReceived_TX.csv")
 
 # Print Analysis
 reliability = (1-abs(len(rxdf)-len(txdf))/len(txdf))*100
+print("Messages Sent: " + str(len(txdf)))
+print("Messgaes Received: " + str(len(rxdf)))
 print("Precentage of messages received: " + str(reliability) + "%")
 
 # Save results of analysis
-reliabilityPD = pd.DataFrame({"Reliability" : [reliability],"Duration" : [dur], "TX Delay" : [tx_delay],"Message Length" : [msg_length]})
-fileName = "reliabilityResults/results_dur"+str(dur)+"_txdelay"+str(tx_delay)+"_msglength"+str(msg_length)+"_boardist"+str(board_dist)+".csv"
+reliabilityPD = pd.DataFrame({"Reliability" : [reliability],"Duration" : [dur], "TX Delay" : [tx_delay],"Message Length" : [msg_length],"Msg Sent":[len(txdf)],"Msg received" : [len(rxdf)]})
+#fileName = "reliabilityResults/results_dur"+str(dur)+"_txdelay"+str(tx_delay)+"_msglength"+str(msg_length)+"_boardist"+str(board_dist)+pipeCond+".csv"
+#fileName = "formalResults/txdelay"+str(tx_delay)+"_msglength"+str(msg_length)+"_boardist"+str(board_dist)+pipeCond+".csv"
+fileName = "occlusionResults2/txdelay"+str(tx_delay)+"_msglength"+str(msg_length)+"_boardist"+str(board_dist)+pipeCond+trial_num+".csv"
 reliabilityPD.to_csv(fileName, encoding='utf-8', index=False)
