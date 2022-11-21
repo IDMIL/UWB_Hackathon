@@ -42,23 +42,24 @@ class UwbOscReceiver:
 
 def main():
     distance_between_nodes = 1.0
+    circle_radius = 10
     receiver = UwbOscReceiver(distance_between_nodes, '/rx0', '/rx2')
     pixel_offset = 50
     pixels_per_meter = 100
     win = graphics.GraphWin("Trilateration", 200, 100)
-    c = graphics.Circle(graphics.Point(0,0), 10)
-    anchor1 = graphics.Circle(graphics.Point(pixel_offset, pixel_offset), 10)
+    c = graphics.Circle(graphics.Point(0,0), circle_radius)
+    anchor1 = graphics.Circle(graphics.Point(pixel_offset, pixel_offset), circle_radius)
     anchor1.setFill("red")
     anchor2 = graphics.Circle(graphics.Point(pixel_offset+(distance_between_nodes*pixels_per_meter),
-        pixel_offset), 10)
+        pixel_offset), circle_radius)
     anchor2.setFill("blue")
     anchor1.draw(win)
     anchor2.draw(win)
     while True:
         x, y = receiver.triangulate()
-        x, y = x*100+pixel_offset, y*100 + pixel_offset
+        x, y = x*pixels_per_meter + pixel_offset, y*pixels_per_meter + pixel_offset
         c.undraw()
-        c = graphics.Circle(graphics.Point(x, y), 10)
+        c = graphics.Circle(graphics.Point(x, y), circle_radius)
         c.draw(win)
         sleep(0.01)
 
